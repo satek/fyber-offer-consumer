@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'thin'
+gem 'faraday'
 
 group :development do
   gem 'better_errors'
@@ -38,6 +39,10 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'vcr'
 end
 
 group :production do
