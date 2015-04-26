@@ -11,7 +11,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'bootstrap-sass'
 gem 'simple_form'
-gem 'thin'
+gem 'puma'
 gem 'faraday'
 
 group :development do
