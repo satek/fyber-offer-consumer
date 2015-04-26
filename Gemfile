@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'puma'
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'active_interaction', '~> 1.5'
 
 group :development do
