@@ -1,0 +1,6 @@
+<%= simple_form_for @fyber_api, url: fetch_offers_path, remote: true do |f|   %>
+  <%= f.input  :uid %>
+  <%= f.input  :pub0 %>
+  <%= f.input  :page %>
+  <%= f.button :submit, "Get offers" %>
+<% end %>

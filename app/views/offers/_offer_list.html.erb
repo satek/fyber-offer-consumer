@@ -1,0 +1,23 @@
+<% result = @outcome.result %>
+
+<h3>Offers</h3>
+<p>
+  <strong>There are <%= result["count"] %> results for this search</strong>
+</p>
+<p>
+  <strong><%= result["pages"] %> pages are available</strong>
+</p>
+<div class="row">
+  <% result["offers"].each do |offer| %>
+    <div class="col-xs-6 col-md-3 thumbnail-container">
+        <a href="<%= offer["link"] %>" class="thumbnail" target="_blank">
+          <img src="<%= offer["thumbnail"]["lowres"] %>" 
+               alt="<%= offer["title"] %>">
+          <div class="caption">
+            <h5><%= offer["title"] %></h5>
+            <p><%= offer["teaser"] %></p>
+          </div>
+        </a>
+      </div>
+  <% end %>
+</div>

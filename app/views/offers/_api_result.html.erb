@@ -1,0 +1,7 @@
+<% if @outcome.valid? %>
+  <% if @outcome.result %>
+    <%= render "offer_lists" %>
+  <% end %>
+<% else %>
+  <%= render "offer_errors" %>
+<% end %>

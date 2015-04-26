@@ -1,0 +1,9 @@
+<h3>Following problems were found:</h3>
+<% @outcome.errors.messages.each do |key, texts| %>
+  <div class="alert alert-danger" role="alert">
+    <strong><%= key %></strong>
+    <% texts.each do |text| %>
+      <p><%= text %></p>
+    <% end %>
+  </div>
+<% end %>
