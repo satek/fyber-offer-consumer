@@ -30,6 +30,16 @@ describe FyberApi do
     outcome.errors.keys.must_include :page
   end
 
+  it "sets page to 1 if the value is missing" do
+    outcome = 
+      VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do
+        FyberApi.run(FactoryGirl.attributes_for(:link).except :page)
+      end
+    outcome.must_be :valid?
+    outcome.result.must_be_kind_of Hash
+    outcome.errors.keys.must_be_empty
+  end
+
   it "doesn't make a call if uid is missing" do
     outcome = 
       VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do

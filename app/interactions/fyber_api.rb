@@ -1,7 +1,7 @@
 class FyberApi < ActiveInteraction::Base
   string :uid
   string :pub0
-  integer :page
+  integer :page, default: 1
 
   validates :uid, :pub0, presence: true
   
