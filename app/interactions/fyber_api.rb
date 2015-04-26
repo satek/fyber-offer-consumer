@@ -2,6 +2,8 @@ class FyberApi < ActiveInteraction::Base
   string :uid
   string :pub0
   integer :page
+
+  validates :uid, :pub0, presence: true
   
   def execute
     params = request_params.merge(hashkey: hashkey)
