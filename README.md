@@ -2,6 +2,8 @@
 
 This application uses [Fyber Mobile Offer API](http://developer.fyber.com/content/ios/offer-wall/offer-api/) to retrieve mobile add offers.
 
+It can be seen deployed on Heroku [HERE](https://tranquil-crag-4307.herokuapp.com/).
+
 ##Framework and server
 
 I have chosen ROR as framework for no particular reason except to speed up view building and test setup. Managing calls to the API is separated in a service class and independent of the framework. Puma is chosen as a server for deployment since the app manages blocking API calls, and Puma allows parallelization with threads and worker processes. It is not truly parallel (except for worker processes) since it is deployed on MRI ruby with its GIL but in this case it shouldn't matter much and the app should still benefit from parallel calls.
