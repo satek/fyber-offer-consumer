@@ -16,7 +16,7 @@ describe OffersController do
     assert_response :success
   end
 
-  it "#fetch returns rendered offers" do
+  it "#fetch returns rendered offers if parameters are correct" do
     VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do
       xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link)
     end
@@ -31,6 +31,42 @@ describe OffersController do
     keys.must_include "offers"
     result["information"].must_be_instance_of Hash
     result["offers"].must_be_instance_of Array
+  end
+
+  it "#fetch returns uid error if uid is missing" do
+    VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do
+      xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link, :missing_uid)
+    end
+    outcome = assigns(:outcome)
+    outcome.wont_be :valid?
+    result = outcome.result
+    result.must_be_nil
+    assert assigns(:partial), "offer_errors"
+    outcome.errors.messages.must_include :uid
+  end
+
+  it "#fetch returns pub0 error if pub0 is missing" do
+    VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do
+      xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link, :missing_pub0)
+    end
+    outcome = assigns(:outcome)
+    outcome.wont_be :valid?
+    result = outcome.result
+    result.must_be_nil
+    assert assigns(:partial), "offer_errors"
+    outcome.errors.messages.must_include :pub0
+  end
+
+  it "#fetch returns page error if page is incorrect" do
+    VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do
+      xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link, :invalid_page)
+    end
+    outcome = assigns(:outcome)
+    outcome.wont_be :valid?
+    result = outcome.result
+    result.must_be_nil
+    assert assigns(:partial), "offer_errors"
+    outcome.errors.messages.must_include :page
   end
   
 end
