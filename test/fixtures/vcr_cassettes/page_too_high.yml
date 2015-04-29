@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.sponsorpay.com/feed/v1/offers.json?appid=157&apple_idfa_tracking_enabled=false&device_id=2b6f0cc904d137be2e1730235f5664094b83&hashkey=be6b9e931a1432bf2cbe5bb0b97c764cb19c79b9&ip=109.235.143.113&locale=de&offer_types=112&page=10&pub0=testpub&timestamp=1430331231&uid=testuid
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 400 Bad Request
+      P3p:
+      - CP="NON DSP COR CURa IVAa IVDa CONa OUR NOR STA"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Sponsorpay-Response-Signature:
+      - 575842be3c55817afe95f3b099395fab42b2f967
+      X-Sponsorpay-Response-Code:
+      - ERROR_INVALID_PAGE
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Runtime:
+      - '0.307245'
+      Date:
+      - Wed, 29 Apr 2015 18:13:52 GMT
+      X-Rack-Cache:
+      - miss
+      X-Powered-By:
+      - Phusion Passenger 4.0.53
+      Server:
+      - nginx + Phusion Passenger 4.0.53
+    body:
+      encoding: UTF-8
+      string: |
+        {"code":"ERROR_INVALID_PAGE","message":"A non-existing page was requested with the parameter page."}
+    http_version: 
+  recorded_at: Wed, 29 Apr 2015 18:13:51 GMT
+recorded_with: VCR 2.9.3

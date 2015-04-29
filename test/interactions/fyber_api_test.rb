@@ -30,6 +30,16 @@ describe FyberApi do
     outcome.errors.keys.must_include :page
   end
 
+  it "returns api error message if page is too high" do
+    outcome = 
+      VCR.use_cassette("page_too_high", match_requests_on: [:method, :host]) do
+        FyberApi.run(FactoryGirl.attributes_for(:link, page: 10))
+      end
+    outcome.wont_be :valid?
+    outcome.result.must_be_nil
+    outcome.errors.keys.must_include :api
+  end
+
   it "sets page to 1 if the value is missing" do
     outcome = 
       VCR.use_cassette("fyber_api_call", match_requests_on: [:method, :host]) do
@@ -59,4 +69,5 @@ describe FyberApi do
     assert_nil outcome.result, "api call result must not be present"
     outcome.errors.keys.must_include :pub0
   end
+
 end
