@@ -68,7 +68,19 @@ describe OffersController do
     assert assigns(:partial), "offer_errors"
     outcome.errors.messages.must_include :page
   end
-  
+
+  it "#fetch returns page error if page is too high" do
+    VCR.use_cassette("page_too_high", match_requests_on: [:method, :host]) do
+      xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link, page: 10)
+    end
+    outcome = assigns(:outcome)
+    outcome.wont_be :valid?
+    result = outcome.result
+    result.must_be_nil
+    assert assigns(:partial), "offer_errors"
+    outcome.errors.messages.must_include :page
+  end
+
   it "#fetch returns no content message if there is no content to display" do
     VCR.use_cassette("no_content", match_requests_on: [:method, :host]) do
       xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link)

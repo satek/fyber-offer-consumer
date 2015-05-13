@@ -37,7 +37,7 @@ describe FyberApi do
       end
     outcome.wont_be :valid?
     outcome.result.must_be_nil
-    outcome.errors.keys.must_include :api
+    outcome.errors.keys.must_include :page
   end
   
   it "returns no content message if there is no content" do

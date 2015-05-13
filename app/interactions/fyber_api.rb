@@ -14,6 +14,9 @@ class FyberApi < ActiveInteraction::Base
       result
     when "NO_CONTENT"
       nil
+    when "ERROR_INVALID_PAGE"
+      errors.add(:page, "Invalid page")
+      nil
     else
       Rails.logger.info result.inspect
       api_error!
