@@ -12,7 +12,7 @@ class FyberApi < ActiveInteraction::Base
     case result["code"]
     when "OK"
       result
-    when "No Content"
+    when "NO_CONTENT"
       nil
     else
       Rails.logger.info result.inspect

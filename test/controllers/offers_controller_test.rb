@@ -69,4 +69,15 @@ describe OffersController do
     outcome.errors.messages.must_include :page
   end
   
+  it "#fetch returns no content message if there is no content to display" do
+    VCR.use_cassette("no_content", match_requests_on: [:method, :host]) do
+      xhr :post, :fetch, fyber_api: FactoryGirl.attributes_for(:link)
+    end
+    outcome = assigns(:outcome)
+    outcome.must_be :valid?
+    result = outcome.result
+    result.must_be_nil
+    assert assigns(:partial), "no_content"
+  end
+
 end

@@ -39,6 +39,15 @@ describe FyberApi do
     outcome.result.must_be_nil
     outcome.errors.keys.must_include :api
   end
+  
+  it "returns no content message if there is no content" do
+    outcome = 
+      VCR.use_cassette("no_content", match_requests_on: [:method, :host]) do
+        FyberApi.run(FactoryGirl.attributes_for(:link))
+      end
+    outcome.must_be :valid?
+    outcome.result.must_be_nil
+  end
 
   it "sets page to 1 if the value is missing" do
     outcome = 
